@@ -3,7 +3,7 @@ const headerInput = document.querySelector(".header-input");
 const todoComplete = document.querySelector(".todo-completed");
 const todoList = document.querySelector(".todo-list");
 
-const toDoData = [];
+const toDoData = JSON.parse(localStorage.getItem("toDoData")) || []; //6) Автоматическое получениеданных из localStorageБлибо пустой массив
 
 const render = function () {
   todoList.innerHTML = ""; //приравниваем к пустой строке
@@ -46,13 +46,6 @@ const render = function () {
       render();
     });
   });
-  document.addEventListener("DOMContentLoaded", function () {
-    if (localStorage.getItem("toDoData")) {
-      toDoData = JSON.parse(localStorage.getItem("toDoData"));
-    }
-
-    render(); //6) не вызывается
-  });
 };
 
 todoControl.addEventListener("submit", function (event) {
@@ -72,3 +65,4 @@ todoControl.addEventListener("submit", function (event) {
 
   render();
 });
+render();
